@@ -24,6 +24,9 @@ class CreateCommentsTable extends Migration
             
         });
 
+        /**
+         * Configuring Relationships
+         */
         Schema::table('comments', function($table)
         {
             $table->foreign('post_id')->references('id')

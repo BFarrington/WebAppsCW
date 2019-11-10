@@ -12,7 +12,6 @@ class User extends Authenticatable
 
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -21,7 +20,6 @@ class User extends Authenticatable
 
     /**
      * The attributes that should be hidden for arrays.
-     *
      * @var array
      */
     protected $hidden = [
@@ -30,17 +28,23 @@ class User extends Authenticatable
 
     /**
      * The attributes that should be cast to native types.
-     *
      * @var array
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * The many Comments that belong to a user
+     */
     public function comments()
     {
         return $this->hasMany('App\Comment');
     }
+    
+    /**
+     * The many Posts that belong to a user
+     */
     public function posts()
     {
         return $this->hasMany('App\Post');

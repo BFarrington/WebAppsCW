@@ -22,6 +22,10 @@ class CreatePostsTable extends Migration
             $table->bigInteger('user_id')->unsigned();
 
         });
+
+        /**
+         * Configuring Relationships
+         */
         Schema::table('posts', function($table)
         {
             $table->foreign('user_id')->references('id')
