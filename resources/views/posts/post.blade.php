@@ -13,4 +13,5 @@
             <p>{{$comment->content}}</p>
         </div>
     @endforeach
+    
 @endsection
