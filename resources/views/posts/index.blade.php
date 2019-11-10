@@ -1,10 +1,10 @@
 
 @extends('layouts.app')
 
-@section('title', 'Posts')
+@section('title', 'Feed')
 
 @section('content')
-    <h2>All Posts</h2>
+    <h2>Content Feed</h2>
     @foreach($posts as $post)
         <a href="{{ route('post.show', [$post->id]) }}">
             <div class="post">
