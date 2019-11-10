@@ -3,27 +3,11 @@
 <html lang="en">
     <head>    
         <title>MugPad - @yield('title')</title>
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/stylesheet.css')}}">
     </head>
-    <style>
-        body
-        {
-            background-color: darkslategrey;
-            color: white;
-            font-family: 'Lucida Sans';
-        }
-        .logo
-        {
-            margin-left: 45%;
-            margin-right:45%;
-        }
-        .st0
-        {
-            fill:whitesmoke;
-        }
-    </style>
     <body>
-        <div class="logo">
-            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        <header>
+            <svg class="logo" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                 viewBox="0 0 303.7 105.5" style="enable-background:new 0 0 303.7 105.5;" xml:space="preserve">
            <g id="XMLID_2_">
                <path id="XMLID_3_" class="st0" d="M42,52.2l0.7-2.7C48.1,28.4,52,14.7,54.4,8.4c0.4-0.9,0.7-1.6,1-2C55.6,5.8,56,5.4,56.3,5
@@ -85,7 +69,7 @@
                    s1.5-9.3,1.5-14.4c0-4.8-0.4-9.1-1.2-13c-0.8-3.9-2-6.9-3.4-9.2C281,15.8,279.4,14.6,277.5,14.4z"/>
            </g>
            </svg>
-        </div>
+        </header>
         <div>
             @yield('content')
         </div>

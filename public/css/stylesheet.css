@@ -1,0 +1,46 @@
+header{
+    text-align: center;
+}
+body
+{
+    background-color: darkslategrey;
+    color: white;
+    font-family: 'Lucida Sans';
+    margin: 1%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+div
+{
+    padding: 1%;
+    padding-left: 5%;
+    padding-right 5%;
+    margin: 1%;
+}
+h2
+{
+    text-align: center
+}
+a
+{
+    color: gray;
+    text-decoration: unset;
+}
+.logo{
+    height:100px;
+}
+.st0
+{
+    fill:whitesmoke;
+}
+.post 
+{
+    background-color: whitesmoke;
+    color: gray;
+}
+.comment
+{
+    background-color: whitesmoke;
+    color: gray;
+    margin-top: 1%;
+}
