@@ -8,11 +8,11 @@
     <body>
         <header>
             <img src="{{ URL::asset('vectors/MugPad.svg')}}" height="100px">
-            <div class="menu">
+            <section class="menu">
                 <a href={{ route('posts')}}>Feed</a>
                 <a href=>Profile</a>
                 <a href=>Create</a>
-            </div>
+            </section>
         </header>
         <section>
             @yield('content')

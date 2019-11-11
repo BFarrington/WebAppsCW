@@ -13,4 +13,10 @@
             <p>{{$comment->content}}</p>
         </div>
     @endforeach
+    <div>
+        <form method="POST" action="{{ route('post.store', [$post->id]) }}">
+            @csrf
+            <textarea name="content" rows="5" maxlength="250"></textarea><input type="submit" value="Submit">
+        </form>
+    </div>
 @endsection
