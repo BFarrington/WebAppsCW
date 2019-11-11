@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Comment;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -36,7 +37,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'content' => 'required|max:250',
+            'post_id' => 'required|integer',
+        ]);
+        $comment = new Comment;
+        $comment -> content = $validatedData['content'];
+        $comment -> user_id = 1; //Placeholder till authentication properly implemented.
+        $comment -> post_id = $validatedData['post_id'];
+        $comment -> save();
+        
+        $post = Post::findOrFail($validatedData['post_id']);
+        return view('posts.post', ['post' => $post]);
     }
 
     /**
