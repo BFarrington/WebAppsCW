@@ -17,7 +17,7 @@
     <div class="post" id="comment">
         <form method="POST" action="{{ route('comment.store', [$post->id]) }}#comment">
             @csrf
-            <textarea name="content" rows="5" maxlength="250"></textarea><input type="submit" value="Submit">
+            <textarea class="comment" name="content" rows="5" maxlength="250"></textarea><input class="button" type="submit" value="Submit">
             <input type="hidden" name="post_id" value="{{$post->id}}">
         </form>
     </div>

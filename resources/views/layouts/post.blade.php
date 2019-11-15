@@ -20,7 +20,9 @@
                 </div>
             @endif
 
-            <img src="{{ URL::asset('vectors/MugPad.svg')}}" height="100px">
+            <a href={{ route('welcome')}}>
+                <img src="{{ URL::asset('vectors/MugPad.svg')}}" height="100px">
+            </a>
             <div class="menu">
                 <a href={{ route('post.index')}}>Feed</a>
                 <a href={{ route('home')}}>Profile</a>

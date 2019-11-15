@@ -83,7 +83,7 @@
             <div class="content">
                 <img src="{{ URL::asset('vectors/MugPad.svg')}}" height="100px">
                 <section class="links">
-                    <a href={{ route('posts')}}>Feed</a>
+                    <a href={{ route('post.index')}}>Feed</a>
                     <a href={{ route('home')}}>Profile</a>
                     <a href=>Create</a>
                 </section>
