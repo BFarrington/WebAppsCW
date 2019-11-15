@@ -8,6 +8,7 @@
     @foreach($posts as $post)
         <a href="{{ route('post.show', [$post->id]) }}">
             <div class="post">
+                <h3 style="text-align: center">{{$post -> title}}</h3>
                 <p style="text-align: center">{{$post -> content}}</p>
                 <h3 style="text-align: right">{{$post -> user -> name}} </h3>
             </div>

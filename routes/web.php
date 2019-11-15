@@ -16,9 +16,12 @@ Route::get('/', function () {
 });
 
 
-Route::get('/posts', 'PostController@index') -> name('posts');
+Route::get('/posts', 'PostController@index') -> name('post.index');
 Route::get('/posts/{id}', 'PostController@show') -> name('post.show');
-Route::post('posts/{id}', 'PostController@store') -> name('post.store');
+Route::get('/create', 'PostController@create') -> name('post.create');
+
+Route::post('/create', 'PostController@store') -> name('post.store');
+Route::post('/posts/{id}', 'CommentController@store') -> name('comment.store');
 
 Auth::routes();
 

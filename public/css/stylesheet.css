@@ -68,6 +68,12 @@ input[type=submit]
     cursor: pointer;
     vertical-align: middle;
 }
+input[type=text]
+{
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin: 5px;
+}
 a:hover
 {
     color:whitesmoke;

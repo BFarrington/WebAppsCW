@@ -22,9 +22,9 @@
 
             <img src="{{ URL::asset('vectors/MugPad.svg')}}" height="100px">
             <div class="menu">
-                <a href={{ route('posts')}}>Feed</a>
+                <a href={{ route('post.index')}}>Feed</a>
                 <a href={{ route('home')}}>Profile</a>
-                <a href=>Create</a>
+                <a href={{ route('post.create')}}>Create</a>
             </div>
         </header>
         <section>

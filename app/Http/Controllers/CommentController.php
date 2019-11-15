@@ -7,7 +7,7 @@ use App\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class PostController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,8 +20,7 @@ class PostController extends Controller
     }
     public function index()
     {
-        $posts = Post::get();
-        return view('posts.index', ['posts' => $posts]);
+        //
     }
 
     /**
@@ -31,7 +30,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        //
     }
 
     /**
@@ -43,14 +42,16 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'title' => 'required|max:100',
             'content' => 'required|max:250',
+            'post_id' => 'required|integer',
         ]);
-        $post = new Post;
-        $post -> title = $validatedData['title'];
-        $post -> content = $validatedData['content'];
-        $post -> user_id = Auth::id();
-        $post -> save();
+        $comment = new Comment;
+        $comment -> content = $validatedData['content'];
+        $comment -> user_id = Auth::id();
+        $comment -> post_id = $validatedData['post_id'];
+        $comment -> save();
+        
+        $post = Post::findOrFail($validatedData['post_id']);
         return view('posts.post', ['post' => $post]);
     }
 
@@ -62,8 +63,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::findOrFail($id);
-        return view('posts.post', ['post' => $post]);
+        //
     }
 
     /**
