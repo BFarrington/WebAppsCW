@@ -14,12 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
 Route::get('/posts', 'PostController@index') -> name('posts');
 Route::get('/posts/{id}', 'PostController@show') -> name('post.show');
 Route::post('posts/{id}', 'PostController@store') -> name('post.store');
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 

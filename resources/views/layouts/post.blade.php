@@ -1,18 +1,31 @@
 <!doctype html>
-
+<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/stylesheet.css')}}">
 <html lang="en">
     <head>    
         <title>MugPad - @yield('title')</title>
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/stylesheet.css')}}">
     </head>
     <body>
         <header>
+            @if (Route::has('login'))
+                <div class="top-right links">
+                    @auth
+                        <a href="{{ url('/home') }}">Home</a>
+                    @else
+                        <a href="{{ route('login') }}">Login</a>
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}">Register</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
+
             <img src="{{ URL::asset('vectors/MugPad.svg')}}" height="100px">
-            <section class="menu">
+            <div class="menu">
                 <a href={{ route('posts')}}>Feed</a>
-                <a href=>Profile</a>
+                <a href={{ route('home')}}>Profile</a>
                 <a href=>Create</a>
-            </section>
+            </div>
         </header>
         <section>
             @yield('content')

@@ -9,7 +9,17 @@ body
     margin-left: 25%;
     margin-right: 25%;
 }
-div
+
+@media only screen and (max-width: 600px){
+    body{
+        background-color: darkslategrey;
+        color: white;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+.post
 {
     background-color: whitesmoke;
     border-radius: 25px;
@@ -20,7 +30,7 @@ div
     padding-bottom: 0.5%;
     margin: 1%;
 }
-div:hover
+.post:hover
 {
     box-shadow: 5px 5px grey;
 }
@@ -61,6 +71,11 @@ input[type=submit]
 a:hover
 {
     color:whitesmoke;
+}
+.top-right {
+    position: absolute;
+    right: 10px;
+    top: 18px;
 }
 .menu
 {
