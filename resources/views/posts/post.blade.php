@@ -26,6 +26,15 @@
                 </div>
             @endforeach
             </div>
+            @if((Auth::user()->id == $post->user_id) or (App\Admin::where('user_id',Auth::user()->id)->exists()))
+            <div class="card-footer text-muted">
+            <form method="POST" action="{{route('post.destroy', [$post->id])}}">
+                @csrf
+                <input class="btn btn-primary mb-2" style="margin-top:.5rem" type="submit" value="Delete">
+            </form>
+            <a>delete</a>
+            </div>
+            @endif
         </div>
 
 

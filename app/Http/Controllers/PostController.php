@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Comment;
+use App\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -92,11 +93,15 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param int $user
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($user, $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        if (Admin::where('user_id', '=', $user->id)->exists() or ($post->user_id == $user->id)) {
+            $post=delete();
+        }
     }
 }
