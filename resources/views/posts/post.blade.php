@@ -1,6 +1,6 @@
 @extends('layouts.post')
 
-@section('title', 'Post - {{$post->title}}')
+@section('title', 'Post')
 
 @section('content')
     <h2>{{$post->user->name}}'s Post</h2>
