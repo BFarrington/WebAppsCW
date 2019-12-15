@@ -75,7 +75,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('posts.edit', ['post' => $post]);
     }
 
     /**
@@ -87,7 +88,16 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|max:100',
+            'content' => 'required|max:500',
+        ]);
+        $post = Post::findOrFail($id);
+        $post->title = $validatedData['title'];
+        $post->content = $validatedData['content'];
+        $post->save();
+
+        return redirect (route('post.show', [$id]));
     }
 
     /**
@@ -102,6 +112,6 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $post->delete();
 
-        return redirect('/posts');
+        return redirect(route('post.index'));
     }
 }

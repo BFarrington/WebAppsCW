@@ -7,7 +7,7 @@
     <div class="col-md-8">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title" style="text-align: center">{{$post -> title}}}</h3>
+                <h3 class="card-title" style="text-align: center">{{$post -> title}}</h3>
             </div>
             <div class="card-body p-3">
                 <blockquote class="blockquote mb-0">
@@ -36,11 +36,20 @@
             </form>
 
             @elseif(Auth::user()->id == $post->user_id)
-            <form method="POST" action="{{route('post.user.destroy', [$post->id])}}">
-                @csrf
-                <input type="hidden" name="post_id" value="{{$post->id}}">
-                <input class="btn btn-primary mb-2" style="margin-top:.5rem" type="submit" value="Delete">
-            </form>
+            <div class="form-inline">
+                <form class="form-group" style="margin: .5rem" method="POST" action="{{route('post.user.destroy', [$post->id])}}">
+                    @csrf
+                    <input type="hidden" name="id" value="{{$post->id}}">
+                    <input class="btn btn-primary mb-2" style="margin-top:.5rem" type="submit" value="Delete">
+                </form>
+
+                <form class="form-group" style="margin: .5rem"  method="POST" action="{{route('post.user.edit', [$post->id])}}">
+                    @csrf
+                    <input type="hidden" name="id" value="{{$post->id}}">
+                    <input class="btn btn-primary mb-2" style="margin-top:.5rem" type="submit" value="Edit">    
+                </form>
+            </div>
+
             @endif
             </div>
         </div>

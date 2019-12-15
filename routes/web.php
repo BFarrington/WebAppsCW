@@ -34,6 +34,8 @@ Content Owner Routes
 */
 Route::group(['middleware' => ['owner']], function () {
     Route::post('/posts/{id}/delete', 'PostController@destroy') -> name('post.user.destroy');
+    Route::post('/posts/{id}/edit', 'PostController@edit') -> name('post.user.edit');
+    Route::post('/posts/{id}/update', 'PostController@update') -> name('post.user.update');
 });
 
 Auth::routes();
