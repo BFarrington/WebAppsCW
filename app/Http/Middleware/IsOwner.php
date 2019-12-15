@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
+use App\Post;
 
 class IsOwner
 {
@@ -15,6 +17,9 @@ class IsOwner
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if(Auth::user() && (Auth::user()->id == Post::findOrFail($request->post_id)->user_id)){
+            return $next($request);
+        }
+        return redirect('/');
     }
 }

@@ -33,7 +33,7 @@ Route::group(['middleware' => ['admin']], function () {
 Content Owner Routes
 */
 Route::group(['middleware' => ['owner']], function () {
-    Route::post('/posts/{id}/delete', 'PostController@destroy') -> name('post.destroy');
+    Route::post('/posts/{id}/delete', 'PostController@destroy') -> name('post.user.destroy');
 });
 
 Auth::routes();

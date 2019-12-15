@@ -26,19 +26,24 @@
                 </div>
             @endforeach
             </div>
-            @if(Auth::user()->is_admin == 1)
+
             <div class="card-footer text-muted">
+
+            @if((Auth::user()->is_admin == 1))
             <form method="POST" action="{{route('post.destroy', [$post->id])}}">
                 @csrf
                 <input class="btn btn-primary mb-2" style="margin-top:.5rem" type="submit" value="Delete">
             </form>
-            <a>delete</a>
-            </div>
+            
+            @elseif(Auth::user()->id == $post->user_id)
+            <form method="POST" action="{{route('post.user.destroy', [$post->id])}}">
+                @csrf
+                <input type="hidden" name="post_id" value="{{$post->id}}">
+                <input class="btn btn-primary mb-2" style="margin-top:.5rem" type="submit" value="Delete">
+            </form>
             @endif
+            </div>
         </div>
-
-
-
         <div class="card p-3" style="margin-top: .5rem">
             <h5 class="class-title">
                 Make a comment:
