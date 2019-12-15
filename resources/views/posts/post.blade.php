@@ -24,7 +24,7 @@
                         </blockquote>
                     </div>
                 </div>
-            @endforeach
+                @endforeach
             </div>
 
             <div class="card-footer text-muted">
@@ -34,7 +34,7 @@
                 @csrf
                 <input class="btn btn-primary mb-2" style="margin-top:.5rem" type="submit" value="Delete">
             </form>
-            
+
             @elseif(Auth::user()->id == $post->user_id)
             <form method="POST" action="{{route('post.user.destroy', [$post->id])}}">
                 @csrf
