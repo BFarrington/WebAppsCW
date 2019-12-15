@@ -20,7 +20,20 @@ Route::get('/create', 'PostController@create') -> name('post.create');
 
 Route::post('/create', 'PostController@store') -> name('post.store');
 Route::post('/posts/{id}', 'CommentController@store') -> name('comment.store');
-Route::post('/posts/delete/{id}', 'PostController@destroy') -> name('post.destroy');
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
+
+/*
+Admin Routes
+*/
+Route::group(['middleware' => ['admin']], function () {
+    Route::post('/posts/{id}/delete', 'PostController@destroy') -> name('post.destroy');
+});
+
+/*
+Content Owner Routes
+*/
+Route::group(['middleware' => ['owner']], function () {
+    Route::post('/posts/{id}/delete', 'PostController@destroy') -> name('post.destroy');
+});
+
+Auth::routes();

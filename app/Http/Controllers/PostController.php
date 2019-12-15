@@ -97,11 +97,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($user, $id)
+    public function destroy($id)
     {
         $post = Post::findOrFail($id);
-        if (Admin::where('user_id', '=', $user->id)->exists() or ($post->user_id == $user->id)) {
-            $post=delete();
-        }
+        $post->delete();
+
+        return redirect('/posts');
     }
 }

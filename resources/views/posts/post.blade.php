@@ -26,7 +26,7 @@
                 </div>
             @endforeach
             </div>
-            @if((Auth::user()->id == $post->user_id) or (App\Admin::where('user_id',Auth::user()->id)->exists()))
+            @if(Auth::user()->is_admin == 1)
             <div class="card-footer text-muted">
             <form method="POST" action="{{route('post.destroy', [$post->id])}}">
                 @csrf
