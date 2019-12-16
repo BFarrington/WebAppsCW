@@ -27,6 +27,13 @@
                             </div>
                     @endforeach
                 </div>
+                <div class="card-footer text-muted">
+                    <div class="row justify-content-center">
+                        <div class="col">
+                                {{$posts->links()}}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

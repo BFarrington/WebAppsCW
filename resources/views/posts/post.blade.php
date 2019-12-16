@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('title', 'Post')
 
 @section('content')
@@ -14,17 +13,22 @@
                     <p class="card-text">{{$post->content}}</p>
                     <footer class="blockquote-footer">{{$post->user->name}}</footer>
                 </blockquote>
-
-                @foreach ($post->comments as $comment)
-                <div class="card p-3" style="margin-top: .5rem">
-                    <div class="card-body">
-                        <blockquote class="blockquote mb-0">
-                        <p class="card-text">{{$comment->content}}</p>
-                        <footer class="blockquote-footer">{{$comment->user->name}}</footer>
-                        </blockquote>
+                {{$comments = App\Comment::where('post_id','=',$post->id)->orderBy('created_at','desc')->paginate(10)}}
+                <div id="comments">
+                    @foreach ($comments as $comment)
+                    <div id="{{$comment->id}}" class="card p-3" style="margin-top: .5rem">
+                        <div class="card-body">
+                            <blockquote class="blockquote mb-0">
+                            <p class="card-text">{{$comment->content}}</p>
+                            <footer class="blockquote-footer">{{$comment->user->name}}</footer>
+                            </blockquote>
+                        </div>
                     </div>
+                    @endforeach
                 </div>
-                @endforeach
+                <div style="margin-top: .5rem">
+                {{$comments->links()}}
+                </div>
             </div>
 
             <div class="card-footer text-muted">
@@ -59,7 +63,7 @@
             </h5>
             <div class="card-body">
                 <div class="form-group" id="comment">
-                    <form method="POST" action="{{ route('comment.store', [$post->id]) }}#comment">
+                    <form method="POST" action="{{ route('comment.store', [$post->id]) }}">
                         @csrf
                         <textarea class="form-control" name="content" rows="5" maxlength="250"></textarea>
                         <input class="btn btn-primary mb-2" style="margin-top:.5rem" type="submit" value="Submit">

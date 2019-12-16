@@ -16,6 +16,7 @@ Route::get('/', function () {return view('welcome');}) -> name('welcome');
 
 Route::get('posts', 'PostController@index') -> name('post.index');
 Route::get('/posts/{id}', 'PostController@show') -> name('post.show');
+Route::get('/posts/{id}#{comment}', 'PostController@show') -> name('post.show.comment');
 Route::get('/create', 'PostController@create') -> name('post.create');
 
 Route::post('/create', 'PostController@store') -> name('post.store');

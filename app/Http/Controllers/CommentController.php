@@ -52,7 +52,7 @@ class CommentController extends Controller
         $comment -> save();
         
         $post = Post::findOrFail($validatedData['post_id']);
-        return view('posts.post', ['post' => $post]);
+        return redirect (route('post.show.comment', [$post->id, $comment->id]));
     }
 
     /**
