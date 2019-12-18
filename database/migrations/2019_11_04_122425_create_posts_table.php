@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('content');
+            $table->string('filename')->default('');
             $table->timestamps();
 
             $table->bigInteger('user_id')->unsigned();

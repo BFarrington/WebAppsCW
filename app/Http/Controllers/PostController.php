@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\Comment;
 use App\Admin;
+use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -46,11 +47,16 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:100',
             'content' => 'required|max:500',
+            'file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+        $imageName = time().'.'.request()->file->getClientOriginalExtension();
+        request()->file->move(public_path('images'), $imageName);
+
         $post = new Post;
         $post -> title = $validatedData['title'];
         $post -> content = $validatedData['content'];
         $post -> user_id = Auth::id();
+        $post -> filename = $imageName;
         $post -> save();
         return view('posts.post', ['post' => $post]);
     }
@@ -110,6 +116,7 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
+        File::delete('images/'.$post->filename);
         $post->delete();
 
         return redirect(route('post.index'));

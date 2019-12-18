@@ -9,6 +9,9 @@
                 <h3 class="card-title" style="text-align: center">{{$post -> title}}</h3>
             </div>
             <div class="card-body p-3">
+                @if ($post->filename != '')
+                    <img class="img-fluid rounded mx-auto d-block"  src="/images/{{$post->filename}}" alt="No image">
+                @endif
                 <blockquote class="blockquote mb-0">
                     <p class="card-text">{{$post->content}}</p>
                     <footer class="blockquote-footer">{{$post->user->name}}</footer>
@@ -33,7 +36,7 @@
 
             <div class="card-footer text-muted">
 
-            @if((Auth::user()->is_admin == 1))
+            @if(Auth::user()->is_admin == 1)
             <form method="POST" action="{{route('post.destroy', [$post->id])}}">
                 @csrf
                 <input class="btn btn-primary mb-2" style="margin-top:.5rem" type="submit" value="Delete">
