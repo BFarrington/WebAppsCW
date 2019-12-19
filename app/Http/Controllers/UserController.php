@@ -2,22 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
-use App\Comment;
+use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class CommentController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     public function index()
     {
         //
@@ -41,37 +35,28 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'content' => 'required|max:250',
-            'post_id' => 'required|integer',
-        ]);
-        $comment = new Comment;
-        $comment -> content = $validatedData['content'];
-        $comment -> user_id = Auth::id();
-        $comment -> post_id = $validatedData['post_id'];
-        $comment -> save();
-        
-        return back();
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('profile.profile', ['user' => $user]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
         //
     }
@@ -80,10 +65,10 @@ class CommentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -91,15 +76,11 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $a = Comment::findOrFail($id);
-        $id = $a->post_id;
-        $a -> delete();
-
-        return redirect (route('post.show', [$id]));
+        //
     }
 }

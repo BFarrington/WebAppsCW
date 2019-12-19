@@ -16,7 +16,7 @@
                     <p class="card-text">{{$post->content}}</p>
                     <footer class="blockquote-footer">{{$post->user->name}}</footer>
                 </blockquote>
-                {{$comments = App\Comment::where('post_id','=',$post->id)->orderBy('created_at','desc')->paginate(10)}}
+                {{$comments = $post->comments()->orderBy('created_at','desc')->paginate(10)}}
                 <div id="comments">
                     @foreach ($comments as $comment)
                     <div id="{{$comment->id}}" class="card mb-2">

@@ -49,15 +49,23 @@ class PostController extends Controller
             'content' => 'required|max:500',
             'file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        $imageName = time().'.'.request()->file->getClientOriginalExtension();
-        request()->file->move(public_path('images'), $imageName);
-
         $post = new Post;
         $post -> title = $validatedData['title'];
         $post -> content = $validatedData['content'];
         $post -> user_id = Auth::id();
-        $post -> filename = $imageName;
+
+        /*
+        Handle Images.
+        */
+        if($request->file !=null)
+        {
+            $imageName = time().'.'.request()->file->getClientOriginalExtension();
+            request()->file->move(public_path('images'), $imageName);
+            $post -> filename = $imageName;
+        }
+
         $post -> save();
+        
         return view('posts.post', ['post' => $post]);
     }
 

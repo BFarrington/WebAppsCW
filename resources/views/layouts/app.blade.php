@@ -32,18 +32,19 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                                <a class="nav-link" href={{ route('post.index')}}>Feed</a>
-                        </li>
-                        <li class="nav-item">
-                                <a class="nav-link" href={{ route('home')}}>Profile</a>
-                        </li>
-                        <li class="nav-item">
-                                <a class="nav-link" href={{ route('post.create')}}>Create</a>
-                        </li>
-                    </ul>
-
+                    @if (Auth::check())
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                    <a class="nav-link" href={{ route('post.index')}}>Feed</a>
+                            </li>
+                            <li class="nav-item">
+                                    <a class="nav-link" href={{ route('profile.show',[Auth::user()->id])}}>Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                    <a class="nav-link" href={{ route('post.create')}}>Create</a>
+                            </li>
+                        </ul>
+                    @endif
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
