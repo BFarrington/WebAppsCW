@@ -35,17 +35,19 @@
                             </div>
                         @elseif(Auth::user()->id == $comment->user_id)
                             <div class="card-footer">
+                                <div class = "form-inline">
                                 <form class="form-group" method="POST" action="{{route('comment.user.destroy', [$comment->id])}}">
                                     @csrf
                                     <input type="hidden" name="id" value="{{$comment->id}}">
                                     <input class="btn btn-primary" type="submit" value="Delete">
                                 </form>
+                                <form class="form-group ml-2" method="POST" action="{{route('comment.user.edit', [$post->id])}}">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{$post->id}}">
+                                        <input class="btn btn-primary" type="submit" value="Edit">    
+                                </form>
+                                </div>
                             </div>
-                            <form class="form-group" method="POST" action="{{route('comment.user.edit', [$post->id])}}">
-                                    @csrf
-                                    <input type="hidden" name="id" value="{{$post->id}}">
-                                    <input class="btn btn-primary" type="submit" value="Edit">    
-                            </form>
                         @endif
                     </div>
                     @endforeach
@@ -60,21 +62,21 @@
             @if(Auth::user()->is_admin == 1)
             <form method="POST" action="{{route('post.destroy', [$post->id])}}">
                 @csrf
-                <input class="btn btn-primary mb-2" style="margin-top:.5rem" type="submit" value="Delete">
+                <input class="btn btn-primary" type="submit" value="Delete">
             </form>
 
             @elseif(Auth::user()->id == $post->user_id)
             <div class="form-inline">
-                <form class="form-group" style="margin: .5rem" method="POST" action="{{route('post.user.destroy', [$post->id])}}">
+                <form class="form-group" method="POST" action="{{route('post.user.destroy', [$post->id])}}">
                     @csrf
                     <input type="hidden" name="id" value="{{$post->id}}">
-                    <input class="btn btn-primary mb-2" style="margin-top:.5rem" type="submit" value="Delete">
+                    <input class="btn btn-primary" type="submit" value="Delete">
                 </form>
 
-                <form class="form-group" style="margin: .5rem"  method="POST" action="{{route('post.user.edit', [$post->id])}}">
+                <form class="form-group"  method="POST" action="{{route('post.user.edit', [$post->id])}}">
                     @csrf
                     <input type="hidden" name="id" value="{{$post->id}}">
-                    <input class="btn btn-primary mb-2" style="margin-top:.5rem" type="submit" value="Edit">    
+                    <input class="btn btn-primary m-2" style="margin-top:.5rem" type="submit" value="Edit">    
                 </form>
             </div>
 
