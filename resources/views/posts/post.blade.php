@@ -28,7 +28,7 @@
                         </div>
                         @if(Auth::user()->is_admin == 1)
                             <div class="card-footer">
-                                <form method="POST" action="{{route('comment.destroy', [$post->id])}}">
+                                <form method="POST" action="{{route('comment.destroy', [$comment->id])}}">
                                     @csrf
                                     <input class="btn btn-primary" type="submit" value="Delete">
                                 </form>
