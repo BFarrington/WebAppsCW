@@ -24,12 +24,13 @@ Route::get('home', 'HomeController@index')->name('home');
 Route::post('create', 'PostController@store') -> name('post.store');
 Route::post('posts/{id}', 'CommentController@store') -> name('comment.store');
 
+
 /*
 Admin Routes
 */
 Route::group(['middleware' => ['admin']], function () {
-    Route::post('posts/{id}/delete', 'PostController@destroy') -> name('post.destroy');
-    Route::post('comment/{id}/delete', 'CommentController@destroy') -> name('comment.destroy');
+    Route::post('admin/posts/{id}/delete', 'PostController@destroy') -> name('post.destroy');
+    Route::post('admin/comment/{id}/delete', 'CommentController@destroy') -> name('comment.destroy');
 });
 
 /*
@@ -40,6 +41,8 @@ Route::group(['middleware' => ['owner']], function () {
     Route::post('posts/{id}/edit', 'PostController@edit') -> name('post.user.edit');
     Route::post('posts/{id}/update', 'PostController@update') -> name('post.user.update');
     Route::post('comment/{id}/delete', 'CommentController@destroy') -> name('comment.user.destroy');
+    Route::post('comment/{id}/edit', 'CommentController@destroy') -> name('comment.user.edit');
+    Route::post('comment/{id}/update', 'CommentController@destroy') -> name('comment.user.update');
 });
 
 Auth::routes();

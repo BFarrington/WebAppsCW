@@ -9,15 +9,15 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     public function index()
     {
         //
@@ -73,7 +73,8 @@ class CommentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $c = Comment::findOrFail($id);
+        return view('posts.comment', ['comment' => $c]);
     }
 
     /**
@@ -85,7 +86,15 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'content' => 'required|max:250',
+        ]);
+        $c = Comment::findOrFail($id);
+        $c->content = $validatedData['content'];
+        $c->save();
+
+        $post = Post::findOrFail($c->post_id);
+        return redirect (route('post.show', [$post->id]));
     }
 
     /**

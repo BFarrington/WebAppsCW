@@ -41,6 +41,11 @@
                                     <input class="btn btn-primary" type="submit" value="Delete">
                                 </form>
                             </div>
+                            <form class="form-group" method="POST" action="{{route('comment.user.edit', [$post->id])}}">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{$post->id}}">
+                                    <input class="btn btn-primary" type="submit" value="Edit">    
+                            </form>
                         @endif
                     </div>
                     @endforeach
