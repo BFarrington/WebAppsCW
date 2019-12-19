@@ -41,8 +41,8 @@ Route::group(['middleware' => ['owner']], function () {
     Route::post('posts/{id}/edit', 'PostController@edit') -> name('post.user.edit');
     Route::post('posts/{id}/update', 'PostController@update') -> name('post.user.update');
     Route::post('comment/{id}/delete', 'CommentController@destroy') -> name('comment.user.destroy');
-    Route::post('comment/{id}/edit', 'CommentController@destroy') -> name('comment.user.edit');
-    Route::post('comment/{id}/update', 'CommentController@destroy') -> name('comment.user.update');
+    Route::post('comment/{id}/edit', 'CommentController@edit') -> name('comment.user.edit');
+    Route::post('comment/{id}/update', 'CommentController@update') -> name('comment.user.update');
 });
 
 Auth::routes();

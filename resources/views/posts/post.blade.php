@@ -41,9 +41,9 @@
                                     <input type="hidden" name="id" value="{{$comment->id}}">
                                     <input class="btn btn-primary" type="submit" value="Delete">
                                 </form>
-                                <form class="form-group ml-2" method="POST" action="{{route('comment.user.edit', [$post->id])}}">
+                                <form class="form-group ml-2" method="POST" action="{{route('comment.user.edit', [$comment->id])}}">
                                         @csrf
-                                        <input type="hidden" name="id" value="{{$post->id}}">
+                                        <input type="hidden" name="id" value="{{$comment->id}}">
                                         <input class="btn btn-primary" type="submit" value="Edit">    
                                 </form>
                                 </div>
@@ -83,7 +83,7 @@
             @endif
             </div>
         </div>
-        <div class="card p-3" style="margin-top: .5rem">
+        <div class="card p-3 mt-2">
             <h5 class="class-title">
                 Make a comment:
             </h5>

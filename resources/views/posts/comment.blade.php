@@ -16,7 +16,7 @@
                             <div class="center">
                                 @csrf
                                 <h3 style="font-size: small">Content<h3>
-                                <textarea class="form-control" name="content" rows="5" maxlength="250">{{$post->content}}</textarea><br>
+                                <textarea class="form-control" name="content" rows="5" maxlength="250">{{$comment->content}}</textarea><br>
                                 <input class="btn btn-primary mb-2" type="submit" value="Edit">
                             </div>
                         </form>
