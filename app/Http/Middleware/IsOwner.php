@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Auth;
 use App\Post;
-
+use App\Comment;
 class IsOwner
 {
     /**
@@ -17,7 +17,16 @@ class IsOwner
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user() && (Auth::user()->id == Post::findOrFail($request->id)->user_id)){
+        $content = Post::find($request->id);
+        if ($content == null)
+        {
+            $content = Comment::find($request->id);
+        }
+
+        if($content == null){
+            return redirect('/');
+        }
+        elseif(Auth::user() && (Auth::user()->id == $content->user_id)){
             return $next($request);
         }
         return redirect('/');

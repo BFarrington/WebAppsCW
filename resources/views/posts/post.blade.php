@@ -12,20 +12,36 @@
                 @if ($post->filename != '')
                     <img class="img-fluid rounded mx-auto d-block"  src="/images/{{$post->filename}}" alt="No image">
                 @endif
-                <blockquote class="blockquote mb-0">
+                <blockquote class="blockquote mb-0 p-3">
                     <p class="card-text">{{$post->content}}</p>
                     <footer class="blockquote-footer">{{$post->user->name}}</footer>
                 </blockquote>
                 {{$comments = App\Comment::where('post_id','=',$post->id)->orderBy('created_at','desc')->paginate(10)}}
                 <div id="comments">
                     @foreach ($comments as $comment)
-                    <div id="{{$comment->id}}" class="card p-3" style="margin-top: .5rem">
+                    <div id="{{$comment->id}}" class="card mb-2">
                         <div class="card-body">
-                            <blockquote class="blockquote mb-0">
+                            <blockquote class="blockquote">
                             <p class="card-text">{{$comment->content}}</p>
                             <footer class="blockquote-footer">{{$comment->user->name}}</footer>
                             </blockquote>
                         </div>
+                        @if(Auth::user()->is_admin == 1)
+                            <div class="card-footer">
+                                <form method="POST" action="{{route('comment.destroy', [$post->id])}}">
+                                    @csrf
+                                    <input class="btn btn-primary" type="submit" value="Delete">
+                                </form>
+                            </div>
+                        @elseif(Auth::user()->id == $comment->user_id)
+                            <div class="card-footer">
+                                <form class="form-group" method="POST" action="{{route('comment.user.destroy', [$comment->id])}}">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{$comment->id}}">
+                                    <input class="btn btn-primary" type="submit" value="Delete">
+                                </form>
+                            </div>
+                        @endif
                     </div>
                     @endforeach
                 </div>

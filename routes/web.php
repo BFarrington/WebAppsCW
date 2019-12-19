@@ -28,6 +28,7 @@ Admin Routes
 */
 Route::group(['middleware' => ['admin']], function () {
     Route::post('/posts/{id}/delete', 'PostController@destroy') -> name('post.destroy');
+    Route::post('/comment/{id}/delete', 'CommentController@destroy') -> name('comment.destroy');
 });
 
 /*
@@ -37,6 +38,7 @@ Route::group(['middleware' => ['owner']], function () {
     Route::post('/posts/{id}/delete', 'PostController@destroy') -> name('post.user.destroy');
     Route::post('/posts/{id}/edit', 'PostController@edit') -> name('post.user.edit');
     Route::post('/posts/{id}/update', 'PostController@update') -> name('post.user.update');
+    Route::post('/comment/{id}/delete', 'CommentController@destroy') -> name('comment.user.destroy');
 });
 
 Auth::routes();
